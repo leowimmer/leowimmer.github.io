@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Leonardo Wimmer — Master's student at the Institute for Cosmic Ray Research, The University of Tokyo. Research in gravitational-wave physics, general relativity, effective field theory, post-Newtonian theory, black hole perturbation theory, cosmology, and gravitational-wave data analysis.">
+
+  <link rel="canonical" href="https://leowimmer.github.io/">
+
+  <title>Leonardo Wimmer</title>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Leonardo Wimmer",
+    "url": "https://leowimmer.github.io/",
+    "email": "leonardowimmer@icrr.u-tokyo.ac.jp",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Institute for Cosmic Ray Research, The University of Tokyo"
+    },
+    "sameAs": [
+      "https://arxiv.org/search/?query=Leonardo+Wimmer&searchtype=author&abstracts=show&order=-announced_date_first&size=50"
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #070707;
+      --panel: rgba(13, 13, 13, 0.86);
+      --panel-soft: rgba(18, 18, 18, 0.78);
+      --text: #e9e5dc;
+      --muted: #bbb4a8;
+      --faint: #827a70;
+      --line: rgba(233, 229, 220, 0.17);
+      --line-strong: rgba(233, 229, 220, 0.28);
+      --accent: #c7a25f;
+      --gold: #c7a25f;
+      --max-width: 930px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        linear-gradient(rgba(4, 4, 4, 0.1), rgba(4, 4, 4, 0.5)),
+        url("assets/universe1.jpg") center top / cover fixed,
+        var(--bg);
+      font-family: Charter, "Bitstream Charter", "Sitka Text", Georgia, serif;
+      font-size: 17px;
+      line-height: 1.62;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(199, 162, 95, 0.10), transparent 26%),
+        radial-gradient(circle at 80% 28%, rgba(199, 162, 95, 0.08), transparent 28%);
+      pointer-events: none;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(199, 162, 95, 0.42);
+    }
+
+    a:hover {
+      color: #e1c77f;
+      border-bottom-color: #e1c77f;
+    }
+
+    .page {
+      width: min(var(--max-width), calc(100% - 36px));
+      margin: 0 auto;
+      padding: 34px 0 48px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 24px;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      background: rgba(8, 8, 8, 0.74);
+      backdrop-filter: blur(10px);
+      margin-bottom: 42px;
+    }
+
+    .site-name {
+      color: #fff;
+      font-size: 20px;
+      letter-spacing: 0.02em;
+      border-bottom: 0;
+    }
+
+    nav {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      font-size: 15px;
+    }
+
+    nav a {
+      color: var(--muted);
+      border-bottom: 0;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    .intro {
+      max-width: 790px;
+      margin: 0 0 44px;
+      padding: 28px 30px;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--gold);
+      background: var(--panel);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      color: #fff;
+      font-weight: normal;
+      line-height: 1.18;
+    }
+
+    h1 {
+      font-size: 44px;
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 25px;
+      margin-bottom: 14px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--line-strong);
+    }
+
+    h3 {
+      font-size: 19px;
+      margin-bottom: 4px;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    .affiliation {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .contact {
+      margin-top: 18px;
+      color: var(--muted);
+    }
+
+    .contact div {
+      margin-bottom: 3px;
+    }
+
+    section {
+      margin: 34px 0;
+      padding: 22px 24px;
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      backdrop-filter: blur(8px);
+      scroll-margin-top: 28px;
+    }
+
+    .publication {
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      background: rgba(8, 8, 8, 0.52);
+      margin-top: 14px;
+    }
+
+    .publication-title {
+      color: #fff;
+      font-size: 18px;
+      line-height: 1.35;
+      margin-bottom: 5px;
+    }
+
+    .publication-meta {
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .cv-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .cv-list li {
+      display: grid;
+      grid-template-columns: 130px minmax(0, 1fr);
+      gap: 30px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cv-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .year {
+      color: var(--gold);
+      font-size: 19px;
+      line-height: 1.18;
+    }
+
+    .details {
+      color: var(--muted);
+    }
+
+    .links-list {
+      columns: 2;
+      column-gap: 40px;
+      margin: 0;
+      padding-left: 19px;
+    }
+
+    .links-list li {
+      break-inside: avoid;
+      margin-bottom: 8px;
+    }
+
+    footer {
+      margin-top: 46px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      color: var(--faint);
+      font-size: 14px;
+    }
+
+    @media (max-width: 760px) {
+      header {
+        display: block;
+      }
+
+      nav {
+        justify-content: flex-start;
+        margin-top: 10px;
+      }
+
+      .intro,
+      section {
+        padding: 20px 18px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .cv-list li {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+
+      .links-list {
+        columns: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <a class="site-name" href="#top">Leonardo Wimmer</a>
+      <nav aria-label="Main navigation">
+        <a href="#publications">Publications</a>
+        <a href="#cv">CV</a>
+        <a href="#links">Links</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="intro" aria-label="Introduction">
+        <h1>Leonardo Wimmer</h1>
+        <p class="affiliation">
+          Master's student<br>
+          Institute for Cosmic Ray Research, The University of Tokyo<br>
+          Gravitational Wave Group
+        </p>
+
+        <p>
+          I am interested in gravitational-wave physics, general relativity, effective field theory, post-Newtonian theory, black hole perturbation theory, gravitational self-force, cosmology, data analysis, and more.
+        </p>
+
+        <div class="contact">
+          <div>Email: leonardowimmer [at] icrr.u-tokyo.ac.jp</div>
+          <div>arXiv: <a href="https://arxiv.org/search/?query=Leonardo+Wimmer&searchtype=author&abstracts=show&order=-announced_date_first&size=50">author search</a></div>
+        </div>
+      </section>
+
+      <section id="publications">
+        <h2>Publications</h2>
+        <article class="publication">
+          <div class="publication-title">N-body next-to-leading-order gravitational spin-orbit interaction via effective field theory</div>
+          <div class="publication-meta">Leonardo Wimmer and Hideyuki Tagoshi</div>
+          <a href="https://arxiv.org/abs/2605.15160">arXiv:2605.15160</a>
+        </article>
+      </section>
+
+      <section id="cv">
+        <h2>CV</h2>
+        <ul class="cv-list">
+          <li>
+            <div class="year">2025–present</div>
+            <div>
+              <h3>M.Sc., The University of Tokyo</h3>
+              <div class="details">Institute for Cosmic Ray Research, Gravitational Wave Group.</div>
+            </div>
+          </li>
+          <li>
+            <div class="year">2021–2025</div>
+            <div>
+              <h3>B.Sc., Kyoto University</h3>
+              <div class="details">Faculty of Science, theoretical astrophysics.</div>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section id="links">
+        <h2>Links</h2>
+        <ul class="links-list">
+          <li><a href="https://arxiv.org/search/?query=Leonardo+Wimmer&searchtype=author&abstracts=show&order=-announced_date_first&size=50">arXiv author search</a></li>
+          <li><a href="https://www.icrr.u-tokyo.ac.jp/en/">Institute for Cosmic Ray Research</a></li>
+          <li><a href="https://www.icrr.u-tokyo.ac.jp/gr/GWPOHPe/index-e.html">Gravitational Wave Group, ICRR</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      Background: Hubble eXtreme Deep Field (XDF). Credit: NASA, ESA, G. Illingworth, D. Magee, P. Oesch, R. Bouwens, and the HUDF09 Team. Last updated: May 2026.
+    </footer>
+  </div>
+</body>
+</html>
