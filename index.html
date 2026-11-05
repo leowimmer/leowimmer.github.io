@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050607">
+  <meta name="color-scheme" content="dark">
+  <title>Leonardo Wimmer — Gravitational-wave physics, ICRR</title>
+  <meta name="description" content="Leonardo Wimmer, master's student in the Gravitational Wave Group at the Institute for Cosmic Ray Research (ICRR), The University of Tokyo. Post-Newtonian effective field theory, spinning compact binaries, waveform modelling, parameter estimation and binary black hole populations.">
+  <meta name="author" content="Leonardo Wimmer">
+  <link rel="canonical" href="https://leowimmer.github.io/">
+
+  <!-- Link previews (Slack, X, LINE, e-mail clients) -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Leonardo Wimmer">
+  <meta property="og:description" content="Gravitational-wave physics at ICRR, The University of Tokyo: post-Newtonian EFT, spinning compact binaries, waveform modelling and inference.">
+  <meta property="og:url" content="https://leowimmer.github.io/">
+  <meta property="og:image" content="https://leowimmer.github.io/assets/gw.jpg">
+  <meta property="profile:first_name" content="Leonardo">
+  <meta property="profile:last_name" content="Wimmer">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon: a Newtonian chirp, drawn inline (no extra file needed) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23050607'/%3E%3Cpath d='M3.0 16.0L3.4 14.6L3.7 13.3L4.1 12.2L4.5 11.5L4.9 11.2L5.2 11.3L5.6 11.9L6.0 13.0L6.3 14.3L6.7 15.8L7.1 17.4L7.5 18.9L7.8 20.0L8.2 20.8L8.6 21.0L8.9 20.7L9.3 19.9L9.7 18.6L10.1 16.9L10.4 15.1L10.8 13.4L11.2 12.0L11.5 11.0L11.9 10.7L12.3 11.0L12.7 12.1L13.0 13.6L13.4 15.6L13.8 17.7L14.1 19.5L14.5 20.9L14.9 21.6L15.3 21.4L15.6 20.4L16.0 18.6L16.4 16.3L16.7 13.8L17.1 11.7L17.5 10.3L17.9 9.9L18.2 10.8L18.6 12.7L19.0 15.4L19.3 18.4L19.7 20.9L20.1 22.4L20.5 22.4L20.8 20.6L21.2 17.5L21.6 13.7L21.9 10.3L22.3 8.6L22.7 9.5L23.1 13.0L23.4 18.2L23.8 23.0L24.2 24.6L24.5 21.1L24.9 12.9L25.3 5.5L25.7 12.0L26.0 18.9L26.4 18.7L26.8 16.0L27.1 14.9L27.5 15.6L27.9 16.2L28.3 16.3L28.6 16.0L29.0 15.9' fill='none' stroke='%23d8bf45' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+  <!-- Fonts: STIX Two Text (the typeface of the physics journals) + IBM Plex Mono.
+       Keep gw.jpg in assets/ as before. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Leonardo Wimmer",
+    "url": "https://leowimmer.github.io/",
+    "jobTitle": "Master's student",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Institute for Cosmic Ray Research, The University of Tokyo",
+      "url": "https://www.icrr.u-tokyo.ac.jp/en/"
+    },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Kyoto University" },
+    "knowsAbout": ["Gravitational waves", "Post-Newtonian theory", "Effective field theory", "Black hole perturbation theory", "Waveform modelling", "Bayesian parameter estimation", "Binary black hole populations"],
+    "identifier": { "@type": "PropertyValue", "propertyID": "ORCID", "value": "0009-0000-5503-8178" },
+    "sameAs": [
+      "https://orcid.org/0009-0000-5503-8178",
+      "https://inspirehep.net/authors/3157100",
+      "https://scholar.google.com/citations?user=ueh0lrEAAAAJ",
+      "https://arxiv.org/search/?query=Leonardo+Wimmer&searchtype=author"
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050607;
+      --ink: #ebe8e1;
+      --ink-2: #ccccc6;
+      --muted: #969fa7;
+      --faint: #5d666e;
+      --rule: #283037;
+      --gold: #d8bf45;
+      --cyan: #55c3dc;
+      --cyan-line: rgba(85, 195, 220, 0.45);
+      --serif: "STIX Two Text", "STIX Two", "Times New Roman", Times, serif;
+      --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      --gutter: clamp(20px, 5.5vw, 72px);
+      --page: min(1120px, calc(100vw - 2 * var(--gutter)));
+      --col: 760px;
+      --indent: 44px;
+      --ref-gutter: 56px;
+      --wave-travel: clamp(100px, 18vw, 280px);
+      --wave-shift: 0px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      isolation: isolate;
+      background: var(--bg);
+      color: var(--ink-2);
+      font-family: var(--serif);
+      font-size: 19px;
+      line-height: 1.6;
+      font-kerning: normal;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    ::selection { color: var(--bg); background: var(--gold); }
+    h1, h2, h3, p, ol, ul, dl, dd, figure { margin: 0; }
+    i, em { font-style: italic; }
+
+    a {
+      color: var(--ink);
+      text-decoration-line: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
+      text-decoration-color: var(--cyan-line);
+      transition: color 140ms ease, text-decoration-color 140ms ease;
+    }
+    a:hover { color: var(--cyan); text-decoration-color: var(--cyan); }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; border-radius: 1px; }
+
+    .skip-link {
+      position: fixed; top: 12px; left: 12px; z-index: 10;
+      padding: 8px 14px; background: var(--bg);
+      font: 500 13px/1.4 var(--mono);
+      transform: translateY(-200%);
+    }
+    .skip-link:focus { transform: none; }
+
+    /* ---------- Background: the wave field (scroll-coupled drift) ---------- */
+    .wavefield {
+      position: fixed; inset: 0; z-index: -1;
+      overflow: hidden; pointer-events: none;
+    }
+    .wavefield img {
+      position: absolute; top: 0;
+      left: calc(-1 * var(--wave-travel));
+      width: calc(100% + var(--wave-travel));
+      height: 100%;
+      object-fit: cover; object-position: center;
+      opacity: 0.9;
+      transform: translate3d(var(--wave-shift), 0, 0);
+      will-change: transform;
+    }
+    .wavefield::after {
+      content: ""; position: absolute; inset: 0;
+      background:
+        linear-gradient(90deg, rgba(5, 6, 7, 0.95) 0%, rgba(5, 6, 7, 0.86) 42%, rgba(5, 6, 7, 0.2) 100%),
+        linear-gradient(180deg, rgba(5, 6, 7, 0) 60%, rgba(5, 6, 7, 0.55) 100%);
+    }
+
+    /* ---------- Chirp: scroll position drawn as h(t), inspiral -> merger ---------- */
+    .chirp {
+      display: none;
+      position: fixed;
+      top: 128px; bottom: 64px;
+      left: max(12px, calc((100vw - var(--page)) / 2 - 78px));
+      width: 30px;
+      pointer-events: none;
+    }
+    .chirp svg { display: block; width: 100%; height: 100%; overflow: visible; }
+    .chirp-ghost { fill: none; stroke: #39424a; stroke-width: 1; opacity: 0.7; }
+    .chirp-live { fill: none; stroke: url(#chirp-grad); stroke-width: 1.35; stroke-linejoin: round; stroke-linecap: round; }
+    .chirp-head { fill: var(--ink); filter: drop-shadow(0 0 4px rgba(216, 191, 69, 0.9)); }
+    .chirp-label {
+      position: absolute; top: -34px; left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted); font-size: 15px; white-space: nowrap;
+    }
+
+    /* ---------- Page ---------- */
+    .page { width: min(1120px, calc(100% - 2 * var(--gutter))); margin-inline: auto; }
+    .col { max-width: var(--col); }
+
+    .runhead {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;
+      gap: 10px 32px;
+      padding: 24px 0 11px;
+      border-bottom: 1px solid var(--rule);
+      font: 500 11.5px/1.5 var(--mono);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .runhead nav { display: flex; flex-wrap: wrap; gap: 6px 26px; }
+    .runhead a { color: var(--muted); text-decoration: none; }
+    .runhead a:hover { color: var(--ink); }
+
+    /* ---------- Front matter (title page) ---------- */
+    .front { padding-top: clamp(64px, 13vh, 140px); }
+    h1 {
+      margin: 0 0 0.3em -0.045em;
+      color: var(--ink);
+      font-size: clamp(48px, 7.4vw, 94px);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.022em;
+    }
+    .fn-mark {
+      position: relative; top: -0.95em;
+      margin-left: 0.05em;
+      color: var(--gold);
+      font-size: 0.36em; font-weight: 400;
+      text-decoration: none;
+    }
+    .fn-mark:hover { color: var(--ink); }
+    .role { color: var(--ink); font-size: 21px; line-height: 1.45; }
+    .affil { margin-top: 2px; color: var(--muted); font-size: 18px; font-style: italic; line-height: 1.5; }
+    .affil a { color: inherit; }
+    .dated { margin-top: 18px; color: var(--muted); font: 400 12px/1.5 var(--mono); letter-spacing: 0.03em; }
+
+    .abstract {
+      max-width: 640px;
+      margin: 46px 0 0 var(--indent);
+      font-size: 18.5px;
+      line-height: 1.62;
+      text-align: justify;
+      hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphenate-limit-chars: 6 3 2;
+    }
+    .abstract-label {
+      font-variant-caps: all-small-caps;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      margin-right: 0.35em;
+    }
+    .profiles {
+      display: flex; flex-wrap: wrap; gap: 8px 26px;
+      margin: 30px 0 0 var(--indent); padding: 0;
+      list-style: none;
+      font: 500 12px/1.6 var(--mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .profiles a { text-decoration: none; border-bottom: 1px solid var(--cyan-line); padding-bottom: 1px; }
+    .profiles a:hover { border-bottom-color: var(--cyan); }
+
+    .footnote { margin-top: 54px; color: var(--muted); font-size: 15.5px; line-height: 1.5; }
+    .footnote::before {
+      content: ""; display: block;
+      width: 8.5rem; height: 1px; margin-bottom: 9px;
+      background: var(--faint);
+    }
+    .footnote sup { color: var(--gold); margin-right: 0.3em; }
+
+    /* ---------- Sections, PRD style ---------- */
+    .sec { margin-top: clamp(96px, 14vh, 140px); scroll-margin-top: 28px; }
+    h2 {
+      display: flex; align-items: baseline; gap: 0.85em;
+      margin-bottom: 34px;
+      color: var(--ink);
+      font-size: 14.5px; font-weight: 600; line-height: 1.3;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+    }
+    h2::after { content: ""; flex: 1; height: 1px; background: var(--rule); transform: translateY(-0.28em); }
+    .num { color: var(--gold); }
+    h3 {
+      margin-bottom: 14px;
+      color: var(--ink);
+      font-size: 20px; font-style: italic; font-weight: 400; line-height: 1.4;
+    }
+    h3 .num { font-style: normal; margin-right: 0.25em; }
+    h3.sub { margin-top: 0; }
+    h3.sub ~ h3.sub { margin-top: 52px; }
+
+    .cols { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 40px; }
+    .enum { padding: 0; list-style: none; counter-reset: en; }
+    .enum > li { position: relative; padding-left: 2.3em; counter-increment: en; }
+    .enum > li + li { margin-top: 10px; }
+    .enum > li::before {
+      content: "(" counter(en, lower-roman) ")";
+      position: absolute; left: 0;
+      color: var(--muted);
+    }
+    .aside { display: block; margin-top: 3px; color: var(--muted); font-size: 16px; line-height: 1.5; }
+
+    /* References */
+    .refs { padding: 0; list-style: none; }
+    .ref { display: grid; grid-template-columns: var(--ref-gutter) minmax(0, 1fr); column-gap: 10px; }
+    .ref + .ref { margin-top: 34px; }
+    .ref-num { padding-top: 0.42em; color: var(--gold); font: 400 13.5px/1.6 var(--mono); }
+    .ref-title { color: var(--ink); font-size: 22px; line-height: 1.38; }
+    .ref-title a { text-decoration: none; }
+    .ref-title a:hover { text-decoration: underline; text-decoration-color: var(--cyan); }
+    .ref-authors { margin-top: 7px; color: var(--muted); font-size: 17px; line-height: 1.5; }
+    .me { color: var(--ink); font-weight: 600; }
+    .ref-venue { color: var(--muted); font-size: 17px; line-height: 1.5; }
+    .status {
+      margin-left: 0.7em;
+      color: var(--cyan);
+      font: 500 10.5px/1 var(--mono);
+      letter-spacing: 0.14em; text-transform: uppercase;
+      vertical-align: 0.15em;
+    }
+    .ref-links {
+      display: flex; flex-wrap: wrap; gap: 4px 16px;
+      margin-top: 10px; padding: 0;
+      list-style: none;
+      font: 400 13px/1.6 var(--mono);
+    }
+    .ref-links a, .ref-links button {
+      padding: 0; border: 0; background: none;
+      color: var(--muted);
+      font: inherit; text-decoration: none; cursor: pointer;
+    }
+    .ref-links a::before, .ref-links button::before { content: "["; color: var(--faint); }
+    .ref-links a::after, .ref-links button::after { content: "]"; color: var(--faint); }
+    .ref-links a:hover, .ref-links button:hover { color: var(--cyan); }
+    .ref-links button[aria-expanded="true"] { color: var(--ink); }
+    .ref-links li:has(> button[hidden]) { display: none; }
+    .ref-abstract {
+      max-width: 640px;
+      margin-top: 16px;
+      color: var(--ink-2);
+      font-size: 16.5px; line-height: 1.6;
+      text-align: justify; hyphens: auto; -webkit-hyphens: auto;
+    }
+    .refs.compact .ref + .ref { margin-top: 24px; }
+    .refs.compact .ref-num { padding-top: 0.28em; }
+    .refs.compact .ref-title { font-size: 18.5px; line-height: 1.42; }
+    .refs.compact .ref-venue { margin-top: 3px; font-size: 15.5px; }
+    .refs.compact .ref-links { margin-top: 4px; font-size: 12.5px; }
+    .note { margin: -4px 0 22px; color: var(--muted); font-size: 16px; }
+    .more { margin-top: 30px; padding-left: calc(var(--ref-gutter) + 10px); color: var(--muted); font-size: 16px; }
+
+    /* Education + contact */
+    .cv { display: grid; grid-template-columns: 8.5em minmax(0, 1fr); gap: 22px 24px; }
+    .cv dt { padding-top: 0.36em; color: var(--muted); font: 400 13px/1.6 var(--mono); letter-spacing: 0.02em; }
+    .cv dt.label { text-transform: uppercase; letter-spacing: 0.12em; font-size: 11.5px; padding-top: 0.6em; }
+    .cv-what { color: var(--ink); }
+    .cv-detail { margin-top: 2px; color: var(--muted); font-size: 16.5px; line-height: 1.5; }
+    .cv address { font-style: normal; }
+    .copy {
+      margin-left: 12px; padding: 0; border: 0; background: none;
+      color: var(--muted); font: 400 12.5px/1 var(--mono); cursor: pointer;
+    }
+    .copy::before { content: "["; color: var(--faint); }
+    .copy::after { content: "]"; color: var(--faint); }
+    .copy:hover { color: var(--cyan); }
+
+    /* Optional portrait, styled as a figure with a caption (see comment in the HTML) */
+    .fig { margin: 40px 0 0 var(--indent); max-width: 260px; }
+    .fig img { display: block; width: 100%; height: auto; filter: grayscale(0.15); }
+    .fig figcaption { margin-top: 8px; color: var(--muted); font-size: 14.5px; line-height: 1.45; }
+    .fig figcaption b { color: var(--ink); font-weight: 600; font-variant-caps: all-small-caps; letter-spacing: 0.05em; }
+
+    footer {
+      display: flex; justify-content: flex-end;
+      margin-top: clamp(110px, 16vh, 160px);
+      padding: 14px 0 44px;
+      border-top: 1px solid var(--rule);
+      color: var(--muted);
+      font: 400 12px/1.6 var(--mono);
+      letter-spacing: 0.02em;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+
+    @media (min-width: 1040px) {
+      .chirp { display: block; }
+    }
+    @media (max-width: 760px) {
+      body { font-size: 17.5px; }
+      .runhead { padding-top: 18px; font-size: 10.5px; letter-spacing: 0.1em; }
+      .runhead nav { gap: 6px 18px; }
+      .front { padding-top: 56px; }
+      h1 { font-size: clamp(40px, 12.5vw, 64px); }
+      .role { font-size: 19px; }
+      .affil { font-size: 16.5px; }
+      .abstract, .profiles, .fig { margin-left: 0; }
+      .abstract { font-size: 17.5px; text-align: left; hyphens: manual; }
+      .cols { grid-template-columns: 1fr; gap: 28px; }
+      :root { --ref-gutter: 36px; }
+      .ref-title { font-size: 20px; }
+      .ref-abstract { text-align: left; }
+      .cv { grid-template-columns: 1fr; gap: 2px; }
+      .cv dd + dt { margin-top: 18px; }
+      .wavefield::after {
+        background: linear-gradient(90deg, rgba(5, 6, 7, 0.92) 0%, rgba(5, 6, 7, 0.84) 60%, rgba(5, 6, 7, 0.7) 100%);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      a { transition: none; }
+      .wavefield img { transform: none; will-change: auto; }
+    }
+    @media print {
+      :root { --ink: #000; --ink-2: #111; --muted: #444; --faint: #888; --rule: #999; --gold: #000; --cyan: #000; --cyan-line: #999; }
+      body { background: #fff; color: #111; font-size: 11pt; }
+      .wavefield, .chirp, .skip-link, .runhead nav, .ref-links button, .copy { display: none !important; }
+      .page { width: 100%; }
+      .front { padding-top: 12pt; }
+      h1 { font-size: 30pt; }
+      .sec { margin-top: 26pt; break-inside: avoid; }
+      .ref-abstract[hidden] { display: block !important; }
+      footer { margin-top: 30pt; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#research">Skip to content</a>
+
+  <div class="wavefield" aria-hidden="true">
+    <img src="assets/gw.jpg" alt="" fetchpriority="high" decoding="async">
+  </div>
+
+  <div class="chirp" aria-hidden="true">
+    <span class="chirp-label"><i>h</i>(<i>t</i>)</span>
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false">
+      <defs>
+        <linearGradient id="chirp-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#e3c94b"/>
+          <stop offset="0.55" stop-color="#2fb4d4"/>
+          <stop offset="1" stop-color="#4a74ff"/>
+        </linearGradient>
+      </defs>
+      <path class="chirp-ghost" d=""/>
+      <path class="chirp-live" d=""/>
+      <circle class="chirp-head" r="2.6" cx="-10" cy="-10"/>
+    </svg>
+  </div>
+
+  <div class="page">
+    <header class="runhead">
+      <span>Gravitational-wave physics · ICRR, UTokyo</span>
+      <nav aria-label="Sections">
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top" class="col">
+      <!-- ============ Title page ============ -->
+      <section class="front" aria-labelledby="name">
+        <h1 id="name">Leonardo Wimmer<a class="fn-mark" href="#fn-contact" aria-label="Contact footnote">*</a></h1>
+        <p class="role">Master's student, Gravitational Wave Group</p>
+        <p class="affil"><a href="https://www.icrr.u-tokyo.ac.jp/en/">Institute for Cosmic Ray Research</a>, The University of Tokyo</p>
+        <p class="dated">(Dated: <time datetime="2026-11-03">November 3, 2026</time>)</p>
+
+        <p class="abstract">
+          <span class="abstract-label">Abstract.</span>
+          I am a master's student in the Gravitational Wave Group at the Institute for Cosmic Ray Research,
+          The University of Tokyo. I'm interested in the relativistic few-body problem:
+          using effective field theory, I compute the conservative dynamics of spinning compact objects in the
+          post-Newtonian expansion. My most recent work extends the next-to-leading-order spin–orbit interaction
+          from binaries to systems of <i>N</i> bodies. Before coming to Tokyo, I completed my B.Sc. at Kyoto University,
+          where I specialized in theoretical astrophysics.
+        </p>
+
+        <ul class="profiles">
+          <li><a href="https://inspirehep.net/authors/3157100?ui-citation-summary=true">INSPIRE</a></li>
+          <li><a href="https://arxiv.org/search/?query=Leonardo+Wimmer&amp;searchtype=author&amp;abstracts=show&amp;order=-announced_date_first&amp;size=50">arXiv</a></li>
+          <li><a href="https://scholar.google.com/citations?user=ueh0lrEAAAAJ&amp;hl=en">Google Scholar</a></li>
+          <li><a href="https://orcid.org/0009-0000-5503-8178">ORCID</a></li>
+        </ul>
+
+        <!-- Optional portrait. Add assets/portrait.jpg and uncomment:
+        <figure class="fig">
+          <img src="assets/portrait.jpg" alt="Leonardo Wimmer" width="520" height="650" loading="lazy">
+          <figcaption><b>Fig. 1.</b> The author, Kashiwa campus.</figcaption>
+        </figure>
+        -->
+
+        <p class="footnote" id="fn-contact">
+          <sup>*</sup><span class="email" data-u="wimmer" data-d="icrr.u-tokyo.ac.jp">wimmer [at] icrr.u-tokyo.ac.jp</span>
+        </p>
+      </section>
+
+      <!-- ============ I. Research ============ -->
+      <section class="sec" id="research" aria-labelledby="research-title">
+        <h2 id="research-title"><span class="num">I.</span> Research interests</h2>
+        <div class="cols">
+          <div>
+            <h3><span class="num">A.</span>Theory</h3>
+            <ol class="enum">
+              <li>
+                Post-Newtonian and post-Minkowskian dynamics
+                <span class="aside">Effective field theory (NRGR), worldline quantum field theory, generalized unitarity and the double copy</span>
+              </li>
+              <li>Black hole perturbation theory</li>
+              <li>Waveform modelling</li>
+            </ol>
+          </div>
+          <div>
+            <h3><span class="num">B.</span>Data analysis</h3>
+            <ol class="enum">
+              <li>Parameter estimation</li>
+              <li>Binary black hole population inference</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ II. Publications ============
+           To add a paper: copy one <li class="ref"> block and renumber.
+           When a preprint is published, replace the venue line with e.g.
+           Phys. Rev. D <b>114</b>, 024001 (2026), and change or remove the status tag. -->
+      <section class="sec" id="publications" aria-labelledby="publications-title">
+        <h2 id="publications-title"><span class="num">II.</span> Publications</h2>
+
+        <h3 class="sub"><span class="num">A.</span>Articles</h3>
+        <ol class="refs">
+          <li class="ref" id="ref-1">
+            <span class="ref-num">[1]</span>
+            <div>
+              <p class="ref-title"><a href="https://arxiv.org/abs/2605.15160"><i>N</i>-body next-to-leading order gravitational spin-orbit interaction via effective field theory</a></p>
+              <p class="ref-authors"><span class="me">L. Wimmer</span> and H. Tagoshi</p>
+              <p class="ref-venue">arXiv:2605.15160 [gr-qc] (2026)<span class="status">Preprint</span></p>
+              <ul class="ref-links">
+                <li><button type="button" aria-expanded="false" aria-controls="abs-1" hidden>abstract</button></li>
+                <li><a href="https://arxiv.org/pdf/2605.15160">pdf</a></li>
+                <li><a href="https://inspirehep.net/literature/3155469">inspire</a></li>
+                <li><a href="https://inspirehep.net/api/literature/3155469?format=bibtex">bibtex</a></li>
+              </ul>
+              <p class="ref-abstract" id="abs-1">
+                Using the post-Newtonian effective field theory (PN-EFT) formalism for spinning gravitating bodies,
+                we derive the next-to-leading-order (NLO) spin-orbit potential and Hamiltonian for a system of
+                <i>N</i> spinning bodies in general relativity. This extends the EFT treatment of the binary case to
+                arbitrary <i>N</i>. We present two derivations: one in the generalized canonical gauge, and one based on
+                the covariant spin supplementary condition (SSC), followed by a noncanonical transformation to canonical
+                variables. In both approaches, the only new contributions beyond the binary case are three-body
+                interaction diagrams. The canonical Hamiltonians obtained from the two EFT routes agree with the known
+                ADM <i>N</i>-body Hamiltonian of Hartung and Steinhoff up to a canonical transformation.
+              </p>
+            </div>
+          </li>
+        </ol>
+
+        <h3 class="sub"><span class="num">B.</span>Collaboration papers</h3>
+        <p class="note">LIGO Scientific, Virgo and KAGRA Collaborations; alphabetical author lists.</p>
+        <ol class="refs compact">
+          <li class="ref" id="ref-2">
+            <span class="ref-num">[2]</span>
+            <div>
+              <p class="ref-title"><a href="https://arxiv.org/abs/2610.20276">Search for Compact Binary Coalescences with Sub-solar Mass Components in Data from the Second Part of LIGO-Virgo-KAGRA's Fourth Observing Run</a></p>
+              <p class="ref-venue">LVK Collaboration (A. G. Abac <i>et al.</i>), arXiv:2610.20276 [gr-qc] (2026)</p>
+              <ul class="ref-links">
+                <li><a href="https://arxiv.org/pdf/2610.20276">pdf</a></li>
+                <li><a href="https://inspirehep.net/literature/3215238">inspire</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="ref" id="ref-3">
+            <span class="ref-num">[3]</span>
+            <div>
+              <p class="ref-title"><a href="https://arxiv.org/abs/2608.23477">Updated Upper Limits on the Isotropic Gravitational-Wave Background from LIGO, Virgo, and KAGRA Data through April 2025</a></p>
+              <p class="ref-venue">LVK Collaboration (A. G. Abac <i>et al.</i>), arXiv:2608.23477 [gr-qc] (2026)</p>
+              <ul class="ref-links">
+                <li><a href="https://arxiv.org/pdf/2608.23477">pdf</a></li>
+                <li><a href="https://inspirehep.net/literature/3195428">inspire</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="ref" id="ref-4">
+            <span class="ref-num">[4]</span>
+            <div>
+              <p class="ref-title"><a href="https://arxiv.org/abs/2608.11620">Constraints on ultralight bosons from merging binary and remnant black holes observed during the second and third parts of the fourth LIGO-Virgo-KAGRA observing run</a></p>
+              <p class="ref-venue">LVK Collaboration (A. G. Abac <i>et al.</i>), arXiv:2608.11620 [gr-qc] (2026)</p>
+              <ul class="ref-links">
+                <li><a href="https://arxiv.org/pdf/2608.11620">pdf</a></li>
+                <li><a href="https://inspirehep.net/literature/3190356">inspire</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="ref" id="ref-5">
+            <span class="ref-num">[5]</span>
+            <div>
+              <p class="ref-title"><a href="https://arxiv.org/abs/2607.19293">GWTC-5.0: Tests of General Relativity</a></p>
+              <p class="ref-venue">LVK Collaboration (A. G. Abac <i>et al.</i>), arXiv:2607.19293 [gr-qc] (2026)</p>
+              <ul class="ref-links">
+                <li><a href="https://arxiv.org/pdf/2607.19293">pdf</a></li>
+                <li><a href="https://inspirehep.net/literature/3182294">inspire</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="ref" id="ref-6">
+            <span class="ref-num">[6]</span>
+            <div>
+              <p class="ref-title"><a href="https://arxiv.org/abs/2605.27227">GWTC-5.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation</a></p>
+              <p class="ref-venue">LVK Collaboration (A. G. Abac <i>et al.</i>), arXiv:2605.27227 [astro-ph.CO] (2026)</p>
+              <ul class="ref-links">
+                <li><a href="https://arxiv.org/pdf/2605.27227">pdf</a></li>
+                <li><a href="https://inspirehep.net/literature/3160313">inspire</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="ref" id="ref-7">
+            <span class="ref-num">[7]</span>
+            <div>
+              <p class="ref-title"><a href="https://arxiv.org/abs/2605.27226">GWTC-5.0: Population Properties of Merging Compact Binaries</a></p>
+              <p class="ref-venue">LVK Collaboration (A. G. Abac <i>et al.</i>), arXiv:2605.27226 [astro-ph.HE] (2026)</p>
+              <ul class="ref-links">
+                <li><a href="https://arxiv.org/pdf/2605.27226">pdf</a></li>
+                <li><a href="https://inspirehep.net/literature/3160312">inspire</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="ref" id="ref-8">
+            <span class="ref-num">[8]</span>
+            <div>
+              <p class="ref-title"><a href="https://arxiv.org/abs/2605.27225">GWTC-5.0: Observations from the Second Part of the Fourth LIGO-Virgo-KAGRA Observing Run and Updates to the Gravitational-Wave Transient Catalog</a></p>
+              <p class="ref-venue">LVK Collaboration (A. G. Abac <i>et al.</i>), arXiv:2605.27225 [gr-qc] (2026)</p>
+              <ul class="ref-links">
+                <li><a href="https://arxiv.org/pdf/2605.27225">pdf</a></li>
+                <li><a href="https://inspirehep.net/literature/3160310">inspire</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="ref" id="ref-9">
+            <span class="ref-num">[9]</span>
+            <div>
+              <p class="ref-title"><a href="https://arxiv.org/abs/2605.27224">GWTC-5.0: Methods for Identifying and Characterizing Gravitational-wave Transients</a></p>
+              <p class="ref-venue">LVK Collaboration (A. G. Abac <i>et al.</i>), arXiv:2605.27224 [gr-qc] (2026)</p>
+              <ul class="ref-links">
+                <li><a href="https://arxiv.org/pdf/2605.27224">pdf</a></li>
+                <li><a href="https://inspirehep.net/literature/3160314">inspire</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="ref" id="ref-10">
+            <span class="ref-num">[10]</span>
+            <div>
+              <p class="ref-title"><a href="https://arxiv.org/abs/2605.27223">GWTC-5.0: An Introduction to Version 5.0 of the Gravitational-Wave Transient Catalog</a></p>
+              <p class="ref-venue">LVK Collaboration (A. G. Abac <i>et al.</i>), arXiv:2605.27223 [gr-qc] (2026)</p>
+              <ul class="ref-links">
+                <li><a href="https://arxiv.org/pdf/2605.27223">pdf</a></li>
+                <li><a href="https://inspirehep.net/literature/3160317">inspire</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="ref" id="ref-11">
+            <span class="ref-num">[11]</span>
+            <div>
+              <p class="ref-title"><a href="https://arxiv.org/abs/2605.27090">Open Data from LIGO, Virgo, and KAGRA through the Second Part of the Fourth Observing Run</a></p>
+              <p class="ref-venue">LVK Collaboration (A. G. Abac <i>et al.</i>), arXiv:2605.27090 [gr-qc] (2026)</p>
+              <ul class="ref-links">
+                <li><a href="https://arxiv.org/pdf/2605.27090">pdf</a></li>
+                <li><a href="https://inspirehep.net/literature/3160304">inspire</a></li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+        <p class="more">Complete, up-to-date list with citations on <a href="https://inspirehep.net/authors/3157100?ui-citation-summary=true">INSPIRE</a>.</p>
+      </section>
+
+      <!-- Talks: uncomment when you have some.
+      <section class="sec" id="talks" aria-labelledby="talks-title">
+        <h2 id="talks-title"><span class="num">III.</span> Talks</h2>
+        <dl class="cv">
+          <dt>Mar 2027</dt>
+          <dd>
+            <p class="cv-what">Title of the talk</p>
+            <p class="cv-detail">JPS Annual Meeting, Online · <a href="#">slides</a></p>
+          </dd>
+        </dl>
+      </section>
+      -->
+
+      <!-- ============ III. Education ============ -->
+      <section class="sec" id="education" aria-labelledby="education-title">
+        <h2 id="education-title"><span class="num">III.</span> Education</h2>
+        <dl class="cv">
+          <dt>2025–present</dt>
+          <dd>
+            <p class="cv-what">M.Sc. student, The University of Tokyo</p>
+            <p class="cv-detail">Gravitational Wave Group, Institute for Cosmic Ray Research</p>
+            <p class="cv-detail">Supervisor: Hideyuki Tagoshi</p>
+          </dd>
+          <dt>2021–2025</dt>
+          <dd>
+            <p class="cv-what">B.Sc., Kyoto University</p>
+            <p class="cv-detail">Faculty of Science, theoretical astrophysics</p>
+          </dd>
+        </dl>
+        <!-- <p class="more">Full CV: <a href="assets/cv.pdf">PDF</a></p> -->
+      </section>
+
+      <!-- ============ IV. Contact ============ -->
+      <section class="sec" id="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title"><span class="num">IV.</span> Contact</h2>
+        <dl class="cv">
+          <dt class="label">Email</dt>
+          <dd>
+            <span class="email" data-u="wimmer" data-d="icrr.u-tokyo.ac.jp">wimmer [at] icrr.u-tokyo.ac.jp</span><button class="copy" type="button" hidden>copy</button>
+          </dd>
+          <dt class="label">Affiliations</dt>
+          <dd>
+            <a href="https://www.icrr.u-tokyo.ac.jp/gr/GWPOHPe/index-e.html">Gravitational Wave Group, ICRR</a><br>
+            <a href="https://www.icrr.u-tokyo.ac.jp/en/">Institute for Cosmic Ray Research</a>
+          </dd>
+        </dl>
+      </section>
+    </main>
+
+    <footer class="col">
+      <a href="#top">Back to top ↑</a>
+    </footer>
+  </div>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const image = document.querySelector('.wavefield img');
+
+      /* ---- e-mail: assembled at runtime so scrapers only see "[at]" ---- */
+      document.querySelectorAll('.email[data-u]').forEach((el) => {
+        const address = `${el.dataset.u}@${el.dataset.d}`;
+        const link = document.createElement('a');
+        link.href = `mailto:${address}`;
+        link.textContent = address;
+        el.replaceChildren(link);
+        const copy = el.nextElementSibling;
+        if (copy && copy.classList.contains('copy') && navigator.clipboard) {
+          copy.hidden = false;
+          copy.addEventListener('click', () => {
+            navigator.clipboard.writeText(address).then(() => {
+              copy.textContent = 'copied';
+              setTimeout(() => { copy.textContent = 'copy'; }, 1600);
+            });
+          });
+        }
+      });
+
+      /* ---- abstract toggles (abstracts stay visible without JavaScript) ---- */
+      document.querySelectorAll('.ref-links button[aria-controls]').forEach((button) => {
+        const panel = document.getElementById(button.getAttribute('aria-controls'));
+        if (!panel) return;
+        panel.hidden = true;
+        button.hidden = false;
+        button.addEventListener('click', () => {
+          const open = button.getAttribute('aria-expanded') !== 'true';
+          button.setAttribute('aria-expanded', String(open));
+          panel.hidden = !open;
+        });
+      });
+
+      /* ---- the chirp: leading-order inspiral, f ∝ τ^(-3/8), A ∝ f^(2/3), then a ringdown ---- */
+      const chirp = document.querySelector('.chirp');
+      const ghost = chirp.querySelector('.chirp-ghost');
+      const live = chirp.querySelector('.chirp-live');
+      const head = chirp.querySelector('.chirp-head');
+      const svg = chirp.querySelector('svg');
+      let wave = null;
+
+      const buildChirp = () => {
+        wave = null;
+        if (getComputedStyle(chirp).display === 'none') return;
+        const w = chirp.clientWidth;
+        const h = chirp.clientHeight;
+        if (!w || !h) return;
+        svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+
+        const n = Math.max(500, Math.round(h * 1.5));
+        const merger = 0.925;      // fraction of the height where the merger sits
+        const tauMin = 0.014;      // regularises the coalescence time
+        const cycles = 15;         // visible inspiral cycles
+        const integral = 1.6 * (Math.pow(merger + tauMin, 0.625) - Math.pow(tauMin, 0.625));
+        const k = cycles / integral;
+        const fMerger = k * Math.pow(tauMin, -0.375);
+        const amp = w / 2 - 1.5;
+
+        const xs = [], ys = [], len = [0];
+        let phase = 0, d = '';
+        for (let i = 0; i <= n; i++) {
+          const s = i / n;
+          let f, a;
+          if (s < merger) {
+            const tau = merger - s + tauMin;
+            f = k * Math.pow(tau, -0.375);
+            a = Math.pow(tauMin / tau, 0.25);
+          } else {
+            f = 1.18 * fMerger;
+            a = Math.exp(-(s - merger) / 0.018);
+          }
+          if (i) phase += (2 * Math.PI * f) / n;
+          const x = w / 2 + a * amp * Math.sin(phase);
+          const y = s * h;
+          xs.push(x); ys.push(y);
+          if (i) len.push(len[i - 1] + Math.hypot(x - xs[i - 1], y - ys[i - 1]));
+          d += `${i ? 'L' : 'M'}${x.toFixed(2)} ${y.toFixed(2)}`;
+        }
+        ghost.setAttribute('d', d);
+        live.setAttribute('d', d);
+        live.style.strokeDasharray = `${len[n]} ${len[n]}`;
+        wave = { xs, ys, len, n };
+      };
+
+      let scheduled = false;
+      const update = () => {
+        scheduled = false;
+        const range = root.scrollHeight - window.innerHeight;
+        const progress = range > 0 ? Math.min(1, Math.max(0, window.scrollY / range)) : 0;
+
+        if (image) {
+          if (reduceMotion.matches) {
+            root.style.setProperty('--wave-shift', '0px');
+          } else {
+            const travel = Math.max(0, image.offsetWidth - root.clientWidth);
+            root.style.setProperty('--wave-shift', `${(progress * travel).toFixed(2)}px`);
+          }
+        }
+
+        if (wave) {
+          const i = Math.round(progress * wave.n);
+          live.style.strokeDashoffset = `${wave.len[wave.n] - wave.len[i]}`;
+          head.setAttribute('cx', wave.xs[i].toFixed(2));
+          head.setAttribute('cy', wave.ys[i].toFixed(2));
+        }
+      };
+      const requestUpdate = () => {
+        if (!scheduled) {
+          scheduled = true;
+          window.requestAnimationFrame(update);
+        }
+      };
+      const rebuild = () => { buildChirp(); requestUpdate(); };
+
+      window.addEventListener('scroll', requestUpdate, { passive: true });
+      window.addEventListener('resize', rebuild);
+      window.addEventListener('pageshow', requestUpdate);
+      window.addEventListener('load', rebuild, { once: true });
+      reduceMotion.addEventListener('change', requestUpdate);
+      if (document.fonts) document.fonts.ready.then(requestUpdate);
+      buildChirp();
+      update();
+    })();
+  </script>
+</body>
+</html>
